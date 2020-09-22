@@ -1,7 +1,7 @@
 <?php
 require_once './server/helpers/Query.php';
 session_start();
-date_default_timezone_set('Europe/Moscow');
+//date_default_timezone_set('Europe/Moscow');
 
 $error = '';
 
@@ -36,11 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>Radius</th>
                 <th>Result (Point lies inside the area?)</th>
                 <th>Creation time</th>
+                <th>Execution time</th>
             </tr></thead>
             <tbody>
-            <?php foreach(array_reverse($_SESSION["form_data"]) as $query) {
-                echo $query->toHtmlTableRow();
-            }?>
+            <?php foreach(array_reverse($_SESSION["form_data"]) as $query) echo $query->toHtmlTableRow(); ?>
             </tbody>
         </table>
     </div>

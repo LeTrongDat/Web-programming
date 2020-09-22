@@ -29,13 +29,13 @@ table thead, table tbody {
 }
 table tbody {
     overflow: auto;
-    height: 496px;
+    height: 490px;
 }
 th, td {
     text-align: center;
     border: 1px solid black;
     padding: 15px;
-    width: 200px;
+    width: 180px;
 }
 th {
     background-color: #ebebeb;

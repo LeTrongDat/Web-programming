@@ -10,21 +10,23 @@ class Query {
     private $r;
     private $creationTime;
     private $result;
+    private $executionTime;
 
     public static function init() {
         for($i = -5; $i <= 3; $i ++) self::$xArray[] = $i;
         for($i = 1; $i <= 5; $i ++) self::$rArray[] = $i;
     }
-    public function __construct($x, $y, $r)
-    {
+    public function __construct($x, $y, $r) {
         $this->x = $this->stringToNum($x);
         $this->y = $this->stringToNum($y);
         $this->r = $this->stringToNum($r);
         $this->validate();
         $this->creationTime = date("H:i:s d/m/Y");
+        $tmp = microtime(true) * 1000;
         $this->result = $this->getResult();
+        $this->executionTime = round(microtime(true) * 1000 - $tmp);
     }
-    public final function toHTMLTableRow() : string {
+    public final function toHTMLTableRow() {
         return <<<ROW
     <tr class="row">
         <td>{$this->x}</td>
@@ -32,6 +34,7 @@ class Query {
         <td>{$this->r}</td>
         <td>{$this->result}</td>
         <td>{$this->creationTime}</td>
+        <td>{$this->executionTime}</td>
     </tr>
 ROW;
     }
@@ -59,13 +62,13 @@ ROW;
             || self::isInsideRectangle($this->x, $this->y, $this->r)
             || self::isInsideTriangle($this->x, $this->y, $this->r));
     }
-    private static function isInsideCircle(int $x, int $y, int $r) {
+    private static function isInsideCircle($x, $y, $r) {
         return ($x >= 0 && $y >= 0 && $x * $x + $y * $y <= $r * $r);
     }
-    private static function isInsideRectangle(int $x, int $y, int $r) {
+    private static function isInsideRectangle($x, $y, $r) {
         return (-$r <= 2 * $y && $y <= 0 && 0 <= $x && $x <= $r);
     }
-    private static function isInsideTriangle(int $x, int $y, int $r) {
+    private static function isInsideTriangle($x, $y, $r) {
         if ($y > 0 || $y < -$r) return false;
 
         $lim_2x = $r - abs($y);
