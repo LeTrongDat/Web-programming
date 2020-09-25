@@ -1,5 +1,7 @@
 #### Instruction to configure wildfly server
 
+***
+
 1. **Integrate with intellij**
     - Step 1: Download wildfly server (at my moment, the version is 20.0.1);
     - Step 2: Create new project and integrate web framework with that project;
@@ -19,9 +21,10 @@
     our localhost. Follow this instruction: https://picloud.pw/post/262/
     
     **Done.**
-
-
-###### Enjoy your laboratory.
+    
+***
+    
+##### Enjoy my laboratory.
     
     
     
