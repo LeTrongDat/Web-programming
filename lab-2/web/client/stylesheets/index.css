@@ -69,7 +69,7 @@ header, footer {
     vertical-align: top;
 }
 
-img[src="image/coordinates.jpg"] {
+img[src="client/image/coordinates.jpg"] {
     width: 50%;
     height: 50%;
     margin-bottom: 10px;
