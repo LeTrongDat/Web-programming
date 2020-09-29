@@ -1,13 +1,13 @@
 @font-face {
     font-family: "atlas of the magi";
-    src: url("../font/Atlas of the Magi.ttf");
+    src: url("../../share/font/Atlas of the Magi.ttf");
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "quite magic regular";
-    src: url("../font/QuiteMagicalRegular-8VA2.ttf");
+    src: url("../../share/font/QuiteMagicalRegular-8VA2.ttf");
 }
 
 * {

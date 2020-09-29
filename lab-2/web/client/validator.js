@@ -31,7 +31,7 @@ const form = {
     items: {
         pointX: {
             input: document.getElementById("x-input"),
-            range: { min: -5, max: 3 },
+            range: { min: -3, max: 5 },
             name: "x",
             value: null,
             init() {
@@ -74,7 +74,7 @@ const form = {
         },
         pointY: {
             input: document.getElementById("y-input"),
-            range: { min: -3, max: 5 },
+            range: { min: -3, max: 3 },
             name: "y",
             value: null,
             init() {
@@ -111,12 +111,12 @@ const form = {
         },
         radius: {
             input: document.getElementById("radius-input"),
-            range: { min: 1, max: 5 },
+            range: { min: 1, max: 3 },
             name: "radius",
             value: 1,
             init() {
                 let selectElm = document.createElement("select");
-                for (let i = this.range.min; i <= this.range.max; ++i) {
+                for (let i = this.range.min; i <= this.range.max; i += 0.5) {
                     let optionElm = document.createElement("option");
                     optionElm.setAttribute("value", i);
                     optionElm.innerText = i;

@@ -56,7 +56,7 @@
   </div>
   <div class="container">
     <h2>Data form</h2>
-    <form name="data-form" id="data-form" action="action.php" method="POST">
+    <form name="data-form" id="data-form" action="result" method="POST">
       <div class="row">
         <div class="col-25">
           <label for="x-input">Point X:</label>

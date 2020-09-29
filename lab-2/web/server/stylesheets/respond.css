@@ -1,9 +1,9 @@
 @font-face {
     font-family: "quite magic regular";
-    src: url("../../font/QuiteMagicalRegular-8VA2.ttf");
+    src: url("../../share/font/QuiteMagicalRegular-8VA2.ttf");
 }
 * {
-    font-family: "quite magic regular", "atlas of the magi", serif;
+    font-family: "quite magic regular", sans-serif;
     font-weight: normal;
     box-sizing: border-box;
 }
@@ -35,7 +35,7 @@ th, td {
     text-align: center;
     border: 1px solid black;
     padding: 15px;
-    width: 180px;
+    width: 165px;
 }
 th {
     background-color: #ebebeb;
