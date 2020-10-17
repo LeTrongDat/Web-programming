@@ -2,6 +2,8 @@ package main.webapp.controller;
 
 import com.sun.istack.internal.NotNull;
 import main.webapp.entity.Query;
+import main.webapp.exception.WLException;
+import main.webapp.exception.WebLabException;
 import main.webapp.log.Log;
 
 import javax.servlet.RequestDispatcher;
@@ -36,6 +38,7 @@ public class ParamsController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendError(503, "We don't support GET method for this site");
+//        response.sendError(503, "We don't support GET method for this site");
+        throw new WebLabException(WLException.METHOD_GET_IS_NOT_SUPPORTED);
     }
 }
