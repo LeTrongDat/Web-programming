@@ -12,7 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ParamsController", urlPatterns = {"/data-process"})
 public class ParamsController extends HttpServlet {
@@ -30,7 +33,17 @@ public class ParamsController extends HttpServlet {
 
         Query query = new Query(pointX, pointY, radius);
 
-        request.setAttribute("query", query);
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("queries") == null) {
+            session.setAttribute("queries", new ArrayList<>());
+        }
+
+        List<Query> queries = (List<Query>) session.getAttribute("queries");
+
+        queries.add(0, query);
+
+        request.setAttribute("queries", query);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/data-result");
 

@@ -72,17 +72,6 @@ public class Query implements Serializable {
         return creationTime;
     }
 
-    public String toHtmlTable() {
-        return String.format("<tr class=\"row\">" +
-                "<td>%.2f</td>" +
-                "<td>%.2f</td>" +
-                "<td>%.2f</td>" +
-                "<td>%s</td>" +
-                "<td>%d</td>" +
-                "<td>%s</td>" +
-                "</tr>", this.x, this.y, this.r, getResult(), this.executionTime, this.creationTime);
-    }
-
     // ------- Private methods -------
 
     private void validate() {

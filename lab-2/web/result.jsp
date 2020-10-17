@@ -1,14 +1,7 @@
 <%@ page import="main.webapp.entity.Query" %>
-<%@ page import="main.webapp.log.Log" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="result" scope="session" class="main.webapp.entity.Result"></jsp:useBean>
-<%
-    Log.log("Start processing result");
-    List<Query> queries = result.getQueries();
-    queries.add(0, (Query) request.getAttribute("query"));
-    result.setQueries(queries);
-%>
+<jsp:setProperty name="result" property="queries"></jsp:setProperty>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +26,15 @@
             <th>Creation time</th>
         </tr></thead>
         <tbody>
-        <% for(Query query: queries) { %>
-            <%= query.toHtmlTable() %>
+        <% for(Query query: result.getQueries()) { %>
+            <tr class="row">
+                <td><%=String.format("%.2f", query.getX())%></td>
+                <td><%=String.format("%.2f", query.getY())%></td>
+                <td><%=String.format("%.2f", query.getR())%></td>
+                <td><%=query.getResult()%></td>
+                <td><%=query.getExecutionTime()%></td>
+                <td><%=query.getCreationTime()%></td>
+            </tr>
         <%}%>
         </tbody>
     </table>
