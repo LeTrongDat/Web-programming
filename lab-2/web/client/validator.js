@@ -8,7 +8,6 @@ const form = {
     element: document.getElementById("data-form"),
     init() {
         for (let obj of Object.values(this.items)) obj.init();
-        // On submit function for form.
         this.element.onsubmit = () => {
             let isValid = true;
             let formData = form.element;
@@ -40,26 +39,31 @@ const form = {
                 for (let i = min; i <= max; ++i) {
                     let divElm = document.createElement("div");
                     for (const st = i; i <= Math.min(st + eachRow - 1, max); ++i) {
-                        let buttonElm = getInputElm({
-                            type: "button",
-                            class: "x-btn",
+                        let radioElm = getInputElm({
+                            type: "radio",
+                            class: "x-radio",
+                            name: "x-radio",
+                            id: `${i}-radio`,
                             value: i,
                         });
-                        divElm.appendChild(buttonElm);
+                        let labelElm = document.createElement("label");
+                        labelElm.setAttribute("for", `${i}-radio`);
+                        labelElm.innerText = i;
+                        divElm.appendChild(radioElm);
+                        divElm.appendChild(labelElm);
                     }
                     this.input.appendChild(divElm);
                     i--;
                 }
-
-                let buttons = document.getElementsByClassName("x-btn");
-
-                for (let btn of buttons) {
-                    btn.onclick = function () {
-                        for (let button of buttons) button.classList.remove("btn-click");
-                        this.classList.add("btn-click");
-                        form.items.pointX.value = this.value;
+                let radios = document.getElementsByName("x-radio");
+                for(let radio of radios) {
+                    radio.onclick = () => {
                         let xError = document.getElementById("x-err");
                         xError.innerText = "";
+                        form.items.pointX.value = null;
+                        for(let r of radios) {
+                            if (r.checked) form.items.pointX.value = r.value;
+                        }
                     }
                 }
             },
@@ -113,24 +117,53 @@ const form = {
             input: document.getElementById("radius-input"),
             range: { min: 1, max: 3 },
             name: "radius",
-            value: 1,
+            value: null,
             init() {
-                let selectElm = document.createElement("select");
-                for (let i = this.range.min; i <= this.range.max; i += 0.5) {
-                    let optionElm = document.createElement("option");
-                    optionElm.setAttribute("value", i);
-                    optionElm.innerText = i;
-                    selectElm.appendChild(optionElm);
+                for(let i = this.range.min; i <= this.range.max; i += 0.5) {
+                    let checkBoxElm = getInputElm({
+                        type: "checkbox",
+                        name: "r-checkbox",
+                        class: "r-checkbox",
+                        id: `${i}-checkbox`,
+                        value: i,
+                    });
+                    let labelElm = document.createElement("label");
+                    labelElm.setAttribute("for", `${i}-checkbox`);
+                    labelElm.innerText = i;
+                    this.input.appendChild(checkBoxElm);
+                    this.input.appendChild(labelElm);
                 }
-                this.input.appendChild(selectElm);
 
-                selectElm.onchange = () => {
-                    form.items.radius.value = selectElm.value;
+                let boxes = document.getElementsByName("r-checkbox");
+                for(let box of boxes) {
+                    box.onclick = () => {
+                        let rError = document.getElementById("radius-err");
+                        rError.innerText = "";
+                        form.items.radius.value = null;
+                        for(let b of boxes) {
+                            if (b.checked) form.items.radius.value = b.value;
+                        }
+                    }
                 }
+            },
+            isValid() {
+                let boxes = document.getElementsByName("r-checkbox");
+                let count = 0;
+                for(let box of boxes) count += box.checked;
+                let rError = document.getElementById("radius-err");
+                if (count > 1) {
+                    rError.innerText = "Can not choose multiple value of radius";
+                    return false;
+                }
+                if (count === 0) {
+                    rError.innerText = "Radius should not be empty";
+                    return false;
+                }
+                return true;
             }
+
+
         }
     }
 };
-
-
 form.init();

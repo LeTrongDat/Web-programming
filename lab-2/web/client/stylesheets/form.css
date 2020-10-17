@@ -91,3 +91,20 @@ input[type=button] {
     color: red;
     /*transition: opacity 2s ease-in;*/
 }
+
+input[type=radio] {
+    cursor: pointer;
+}
+
+input[type=checkbox] + label, input[type=radio] + label {
+    display: inline-block;
+    width: 15%;
+    height: 30px;
+    padding: 5px 5px 5px 5px;
+}
+label:hover {
+    transform: scale(1.1);
+    transition: 0.4s;
+    cursor: pointer;
+}
+

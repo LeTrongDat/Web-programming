@@ -1,18 +1,13 @@
 <%@ page import="main.webapp.entity.Query" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="main.webapp.log.Log" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%! private List<Query> queries; %>
+<jsp:useBean id="result" scope="session" class="main.webapp.entity.Result"></jsp:useBean>
 <%
-    PrintWriter writer = response.getWriter();
-    writer.println("Start processing result");
-    if (session.isNew()) {
-        session.setAttribute("queries", new ArrayList<Query>());
-    } else writer.println(session.getId());
-    writer.close();
-    queries = (ArrayList<Query>) session.getAttribute("queries");
+    Log.log("Start processing result");
+    List<Query> queries = result.getQueries();
     queries.add(0, (Query) request.getAttribute("query"));
+    result.setQueries(queries);
 %>
 <!DOCTYPE html>
 <html>
@@ -54,4 +49,3 @@
 </script>
 </body>
 </html>
-

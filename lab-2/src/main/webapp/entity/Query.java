@@ -16,7 +16,7 @@ public class Query implements Serializable {
     private static final long serialVersionUID = 8442671044445353433L;
 
     @NotNull
-    private Integer x;
+    private Double x;
 
     @NotNull
     private Double y;
@@ -30,10 +30,8 @@ public class Query implements Serializable {
 
     private String creationTime;
 
-    public Query() {};
-
     public Query(@NotNull String x, @NotNull String y, @NotNull String r) {
-        this.x = Integer.parseInt(x);
+        this.x = Double.parseDouble(x);
 
         this.y = Double.parseDouble(y);
 
@@ -45,7 +43,7 @@ public class Query implements Serializable {
         validate();
     }
 
-    public Integer getX() {
+    public Double getX() {
         return x;
     }
 
@@ -76,7 +74,7 @@ public class Query implements Serializable {
 
     public String toHtmlTable() {
         return String.format("<tr class=\"row\">" +
-                "<td>%d</td>" +
+                "<td>%.2f</td>" +
                 "<td>%.2f</td>" +
                 "<td>%.2f</td>" +
                 "<td>%s</td>" +
@@ -88,14 +86,14 @@ public class Query implements Serializable {
     // ------- Private methods -------
 
     private void validate() {
-        TreeSet<Integer> xValues = new TreeSet<>();
-        for(int i = -3; i <= 5; i++) xValues.add(i);
-        if (!xValues.contains(this.x)) throw new WebLabException(WLException.INVALID_POINT_X_MESSAGE);
+//        TreeSet<Double> xValues = new TreeSet<>();
+//        for(int i = -3; i <= 5; i++) xValues.add((double) i);
+//        if (!xValues.contains(this.x)) throw new WebLabException(WLException.INVALID_POINT_X_MESSAGE);
 
         if (this.y <= -3 || this.y >= 3) throw new WebLabException(WLException.INVALID_POINT_Y_MESSAGE);
 
-        List<Double> rValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
-        if (!rValues.contains(this.r)) throw new WebLabException(WLException.INVALID_RADIUS_MESSAGE);
+//        List<Double> rValues = Arrays.asList(1.0, 1.5, 2.0, 2.5, 3.0);
+//        if (!rValues.contains(this.r)) throw new WebLabException(WLException.INVALID_RADIUS_MESSAGE);
     }
 
     private boolean isInsideArea() {
