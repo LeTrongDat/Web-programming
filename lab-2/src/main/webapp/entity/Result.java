@@ -18,7 +18,7 @@ public class Result implements Serializable {
         if (this.queries == null) {
             this.queries = new ArrayList<>();
         }
-        return queries;
+        return this.queries;
     }
 
     public void setQueries(List<Query> queries) {

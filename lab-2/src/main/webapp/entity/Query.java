@@ -8,9 +8,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
 
 public class Query implements Serializable {
     private static final long serialVersionUID = 8442671044445353433L;
@@ -43,16 +40,16 @@ public class Query implements Serializable {
         validate();
     }
 
-    public Double getX() {
-        return x;
+    public String getX() {
+        return String.format("%.2f", this.x);
     }
 
-    public Double getY() {
-        return y;
+    public String getY() {
+        return String.format("%.2f", this.y);
     }
 
-    public Double getR() {
-        return r;
+    public String getR() {
+        return String.format("%.2f", this.r);
     }
 
     public String getResult() {

@@ -1,7 +1,8 @@
 <%@ page import="main.webapp.entity.Query" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="result" scope="session" class="main.webapp.entity.Result"></jsp:useBean>
-<jsp:setProperty name="result" property="queries"></jsp:setProperty>
+<% result.setQueries((List<Query>) session.getAttribute("queries")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,9 @@
         <tbody>
         <% for(Query query: result.getQueries()) { %>
             <tr class="row">
-                <td><%=String.format("%.2f", query.getX())%></td>
-                <td><%=String.format("%.2f", query.getY())%></td>
-                <td><%=String.format("%.2f", query.getR())%></td>
+                <td><%=query.getX()%></td>
+                <td><%=query.getY()%></td>
+                <td><%=query.getR()%></td>
                 <td><%=query.getResult()%></td>
                 <td><%=query.getExecutionTime()%></td>
                 <td><%=query.getCreationTime()%></td>

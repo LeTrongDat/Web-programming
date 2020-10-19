@@ -43,8 +43,6 @@ public class ParamsController extends HttpServlet {
 
         queries.add(0, query);
 
-        request.setAttribute("queries", query);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/data-result");
 
         dispatcher.forward(request, response);
