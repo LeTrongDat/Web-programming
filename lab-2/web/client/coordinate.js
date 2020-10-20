@@ -65,15 +65,20 @@ ctx.stroke();
 
 function getCursorPosition(canvas, event) {
     const rect = canvas.getBoundingClientRect();
-    const x = (event.clientX - xCenter - rect.left) / R * radius;
-    const y = (yCenter - event.clientY + rect.top) / R * radius;
+    let xArr = [], yArr = [];
+    for(let i = 0; i < radius.length; i++) {
+        let x = (event.clientX - xCenter - rect.left) / R * radius[i];
+        let y = (yCenter - event.clientY + rect.top) / R * radius[i];
+        xArr.push(x);
+        yArr.push(y);
+    }
 
     ctx.beginPath();
     ctx.fillStyle = "red";
     ctx.arc(event.clientX - rect.left, event.clientY - rect.top, 3, 0, 2*Math.PI);
     ctx.fill();
     ctx.closePath();
-    redirect({x, y, radius}, "/lab-2_war/data-process");
+    redirect({x: xArr.join(","), y: yArr.join(","), radius}, "/lab-2_war/data-process");
 };
 
 function redirect(body, url) {

@@ -21,17 +21,15 @@ import java.util.List;
 public class ParamsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         @NotNull
-        String pointX = request.getParameter("x");
+        String[] pointX = request.getParameter("x").split(",");
 
         @NotNull
-        String pointY = request.getParameter("y");
+        String[] pointY = request.getParameter("y").split(",");
 
         @NotNull
-        String radius = request.getParameter("radius");
+        String[] radius = request.getParameter("radius").split(",");
 
         Log.log("Form params: [point x: {}], [point y: {}], [radius: {}]", pointX, pointY, radius);
-
-        Query query = new Query(pointX, pointY, radius);
 
         HttpSession session = request.getSession();
 
@@ -41,7 +39,11 @@ public class ParamsController extends HttpServlet {
 
         List<Query> queries = (List<Query>) session.getAttribute("queries");
 
-        queries.add(0, query);
+        for(int i = 0; i < radius.length; i++) {
+            Query query = new Query(pointX[i > pointX.length - 1 ? 0 : i], pointY[i > pointY.length - 1 ? i : 0], radius[i]);
+
+            queries.add(0, query);
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/data-result");
 

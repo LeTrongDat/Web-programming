@@ -117,7 +117,7 @@ const form = {
             input: document.getElementById("radius-input"),
             range: { min: 1, max: 3 },
             name: "radius",
-            value: null,
+            value: [],
             init() {
                 for(let i = this.range.min; i <= this.range.max; i += 0.5) {
                     let checkBoxElm = getInputElm({
@@ -139,9 +139,9 @@ const form = {
                     box.onclick = () => {
                         let rError = document.getElementById("radius-err");
                         rError.innerText = "";
-                        form.items.radius.value = null;
+                        form.items.radius.value = [];
                         for(let b of boxes) {
-                            if (b.checked) form.items.radius.value = b.value;
+                            if (b.checked) form.items.radius.value.push(b.value);
                         }
                     }
                 }
@@ -151,18 +151,12 @@ const form = {
                 let count = 0;
                 for(let box of boxes) count += box.checked;
                 let rError = document.getElementById("radius-err");
-                if (count > 1) {
-                    rError.innerText = "Can not choose multiple value of radius";
-                    return false;
-                }
                 if (count === 0) {
                     rError.innerText = "Radius should not be empty";
                     return false;
                 }
                 return true;
             }
-
-
         }
     }
 };
