@@ -44,6 +44,7 @@
         <td id="area">
 <%--          <img src="client/image/coordinate.jpg" alt="Cartesian coordinate of area">--%>
           <canvas id="myCanvas" width="300" height="300" style="border:1px solid #d3d3d3;"> </canvas>
+          <p class="error" id="canvas-err"></p>
         </td>
       </tr>
     </table>
