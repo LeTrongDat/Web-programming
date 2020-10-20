@@ -94,8 +94,8 @@ function redirect(body, url) {
 
 document.querySelector('canvas').addEventListener('mousedown', function(e) {
     radius = form.items.radius.value;
-    if (!radius) {
-        alert("It's impossible to determine coordinate of the point without Radius value");
+    if (!form.items.radius.isValid()) {
+        alert("It's impossible to determine coordinate of the point without radius value or multiple radius value");
         return;
     }
     getCursorPosition(document.querySelector('canvas'), e);

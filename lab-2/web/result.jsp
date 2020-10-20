@@ -45,7 +45,7 @@
 </div>
 <script>
     function goBack() {
-        window.history.back();
+        window.location.replace("/lab-2_war");
     }
 </script>
 </body>
