@@ -10,10 +10,6 @@ public class Result implements Serializable {
 
     private List<Query> queries;
 
-    public Result() {
-        queries = new ArrayList<>();
-    }
-
     public List<Query> getQueries() {
         if (this.queries == null) {
             this.queries = new ArrayList<>();

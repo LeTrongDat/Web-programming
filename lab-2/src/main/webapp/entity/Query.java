@@ -35,6 +35,7 @@ public class Query implements Serializable {
         this.r = Double.parseDouble(r);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd:mm:yyyy");
+
         creationTime = LocalDateTime.now(ZoneId.of("UTC+3")).format(formatter);
 
         validate();
