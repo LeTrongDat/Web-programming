@@ -40,7 +40,8 @@ public class ParamsController extends HttpServlet {
         List<Query> queries = (List<Query>) session.getAttribute("queries");
 
         for(int i = 0; i < radius.length; i++) {
-            Query query = new Query(pointX[(i + 1 > pointX.length) ? 0 : i], pointY[(i + 1 > pointY.length) ? i : 0], radius[i]);
+            System.out.println(pointX.length);
+            Query query = new Query(pointX[(i + 1 > pointX.length) ? 0 : i], pointY[(i + 1 > pointY.length) ? 0 : i], radius[i]);
 
             queries.add(0, query);
         }
